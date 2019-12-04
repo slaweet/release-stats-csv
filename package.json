@@ -1,5 +1,5 @@
 {
-  "name": "download-stats-csv",
+  "name": "release-stats-csv",
   "version": "0.1.0",
   "description": "Get the latest release stats of your project on Github",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slaweet/download-stats-csv.git"
+    "url": "git+https://github.com/slaweet/release-stats-csv.git"
   },
   "keywords": [
     "github"
@@ -16,14 +16,14 @@
   "author": "Vít Stanislav <slaweet@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slaweet/download-stats-csv/issues"
+    "url": "https://github.com/slaweet/release-stats-csv/issues"
   },
-  "homepage": "https://github.com/slaweet/download-stats-csv#readme",
+  "homepage": "https://github.com/slaweet/release-stats-csv#readme",
   "dependencies": {
     "objects-to-csv": "^1.3.5",
     "request": "^2.88.0"
   },
   "bin": {
-    "download-stats-csv": "./cli.js"
+    "release-stats-csv": "./cli.js"
   }
 }

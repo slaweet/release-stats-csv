@@ -7,10 +7,10 @@ if (process.argv.length < 4) {
 The script caches data in a file, the cache expires in one day.
 
 Usage:
-$ download-stats-csv <repo_owner> <repo_name>
+$ release-stats-csv <repo_owner> <repo_name>
 
 E.g.:
-$ download-stats-csv LiskHQ lisk-hub
+$ release-stats-csv LiskHQ lisk-hub
 `);
   process.exit(1);
 }
