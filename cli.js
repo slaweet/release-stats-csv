@@ -19,7 +19,7 @@ if (!process.env.GH_TOKEN) {
   console.error(`Please set up Github token to enviroment variable.
 export GH_TOKEN=<YOUR-GITHUB-TOKEN>
 
-In needed, you can generate a new token here:
+If needed, you can generate a new token here:
 https://github.com/settings/tokens
 `);
   process.exit(2);
