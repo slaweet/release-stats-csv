@@ -2,6 +2,8 @@
 
 This is a tool to fetch releases from github api and save download numbers to csv file for further analyses.
 
+It assumes the release build names are in format from [electron-builder](https://github.com/electron-userland/electron-builder) for Windows, MacOS, and Linux.
+
 ## Instalation
 
 ```
