@@ -16,7 +16,7 @@ Set up Github token to enviroment variable:
 export GH_TOKEN=<YOUR-GITHUB-TOKEN>
 ```
 
-In needed, you can generate a new token here: https://github.com/settings/tokens
+If needed, you can generate a new token here: https://github.com/settings/tokens
 
 ## Usage
 ```
