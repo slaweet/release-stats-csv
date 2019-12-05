@@ -1,6 +1,6 @@
 {
   "name": "release-stats-csv",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Get the latest release stats of your project on Github",
   "main": "index.js",
   "scripts": {
