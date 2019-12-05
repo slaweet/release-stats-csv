@@ -1,4 +1,4 @@
-# release-stats-csv
+# release-stats-csv [![NPM package](https://img.shields.io/npm/v/release-stats-csv)](https://www.npmjs.com/package/release-stats-csv)
 
 This is a tool to fetch releases from github api and save download numbers to csv file for further analyses.
 
