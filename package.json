@@ -25,5 +25,12 @@
   },
   "bin": {
     "release-stats-csv": "./cli.js"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-node": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=8.3.0"
   }
 }

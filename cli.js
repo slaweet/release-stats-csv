@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const ObjectsToCsv = require('objects-to-csv');
 const request = require("request");
 
@@ -64,7 +65,7 @@ function fetchData(fileName, page) {
       resolve();
     }
   });
-};
+}
 
 function isRecentFile(fileName) {
   if (!fs.existsSync(fileName)) {
@@ -113,7 +114,7 @@ function addDownloadsPerDay(releases) {
         ).toFixed(2),
       })
     );
-    releases = releases.map((r, i) => ({
+    releases = releases.map((r) => ({
         ...r,
         win_per_day: (r.win / r.latest_for_n_days).toFixed(2),
         mac_per_day: (r.mac / r.latest_for_n_days).toFixed(2),
