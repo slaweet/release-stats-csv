@@ -26,22 +26,31 @@ https://github.com/settings/tokens
   process.exit(2);
 }
 
-var fs = require('fs'),
-    releases = [];
-
 const repoOwner = process.argv[2];
 const repoName = process.argv[3];
 const githubApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
 const outputFile = `./${repoName}-downloads.csv`;
 
-([ ...new Array(2)]).map((x, i) => {
-  const fileName = `/tmp/${repoName}-downloads-${i}.json`;
-  fetchData(fileName, i + 1).then(() => {
-    fs.readFile(fileName, handleFile)
-  });
-});
+saveReleaseStats();
 
-function fetchData(fileName, page) {
+async function getReleaseStats(page=0) {
+  let data = await fetchData(page);
+  if (data.length === 30) {
+    data = [
+      ...data,
+      ...(await getReleaseStats(page+1)),
+    ];
+  }
+  return data;
+}
+
+async function saveReleaseStats() {
+  const data = await getReleaseStats();
+  saveToCsv(data);
+}
+
+function fetchData(page) {
+  console.log('Fetching page', page);
   const url = `${githubApiUrl}?page=${page}`;
   const options = {
     url,
@@ -51,32 +60,15 @@ function fetchData(fileName, page) {
     },
   }
   return new Promise(function(resolve, reject){
-    if (!isRecentFile(fileName)) {
-      request.get(options, (error, response, body) => {
-        fs.writeFile(fileName, body, function(err) {
-          if(err) {
-              reject();
-              return console.log(err);
-          }
-          resolve();
-        });
-      });
-    } else {
-      resolve();
-    }
+    request.get(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(JSON.parse(body));
+      }
+    });
   });
 }
-
-function isRecentFile(fileName) {
-  if (!fs.existsSync(fileName)) {
-    return false;
-  }
-  var dayAgo = new Date().getTime() - (24 * 60 * 60 * 1000)
-  var stats = fs.statSync(fileName);
-  var mtime = new Date(stats.mtime);
-  return mtime.getTime() > dayAgo;
-}
-
 
 function getDownloadsFor(release, platform) {
   return release.assets.filter(asset => (
@@ -126,12 +118,11 @@ function addDownloadsPerDay(releases) {
     return releases;
 }
 
-async function handleFile(err, data) {
-    if (err) throw err
-    releases = releases.concat(getReleases(JSON.parse(data)));
+async function saveToCsv(data) {
+    let releases = getReleases(data);
     releases = addDownloadsPerDay(releases);
 
     let csv = new ObjectsToCsv(releases);
     await csv.toDisk(outputFile);
-    console.log(await csv.toString());
+    console.log('Release stats saved to', outputFile);
 }

@@ -1,7 +1,6 @@
 # release-stats-csv
 
 This is a tool to fetch releases from github api and save download numbers to csv file for further analyses.
-The script caches data in a file, the cache expires in one day.
 
 ## Instalation
 
